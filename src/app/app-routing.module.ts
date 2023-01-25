@@ -6,8 +6,11 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./feature/auth/signup/signup.module').then(m => m.SignupModule) },
   { path: 'home', loadChildren: () => import('./feature/home/home.module').then(m => m.HomeModule) },
   { path: 'product-list', loadChildren: () => import('./feature/product/product-list/product-list.module').then(m => m.ProductListModule) },
-  { path: 'product-detail/:id', loadChildren: () => import('./feature/product/product-detail/product-detail.module').then(m => m.ProductDetailModule) }
+  { path: 'product-detail/:id', loadChildren: () => import('./feature/product/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
+  { path:'', redirectTo:'home', pathMatch:'full' },
+  { path: '**', redirectTo: 'home'}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
