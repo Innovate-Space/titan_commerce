@@ -7,14 +7,14 @@
     padding-inline: 2em;
 }
 
-.flex, .grid{
+.flex, .my-grid{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.grid{
+.my-grid{
     display: grid;
 }
 

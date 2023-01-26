@@ -1,0 +1,43 @@
+
+.product{
+    padding: 2em;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    overflow: hidden;
+    transition: .4s;
+    position: relative;
+    &:hover{
+        img{
+            scale: 1.1;
+        }
+
+        .product__cart{
+            bottom: 2em;
+        }
+    }
+
+    img{
+        height: 190px;
+        margin-inline: auto;
+        margin-bottom: 1.5em;
+        transition: .4s;
+    }
+
+    &__price{
+        color: var(--clr-secondary-text);
+        font-size: 1.1rem;
+    }
+
+    &__cart{
+        height: 40px;
+        width: 40px;
+        background-color: var(--clr-primary-dark);
+        color: var(--clr-white);
+        border-radius: 50%;
+        position: absolute;
+        bottom: -4em;
+        right: 2em;
+        transition: .4s;
+    }
+}

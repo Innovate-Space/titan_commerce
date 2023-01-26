@@ -22,7 +22,7 @@
                 <div class="cart">
                    <small>Welcome</small>
                   <div class="div">
-                    <a href="#">Sign In</a> | <a href="#">Sign Up</a>
+                    <a (click)="toggle(true)">Sign In</a> | <a (click)="toggle(false)">Sign Up</a>
                   </div>
                 </div>
             </div>
@@ -37,12 +37,14 @@
 
         <nav class="header__nav container">
             <ul class="header__ul flex" role="list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a href="#">Sign In</a></li>
-                <li><a href="#">Sign Up</a></li>
+                <li *ngFor="let link of menuLinks"><a [routerLink]="link.path" >{{link.name}}</a></li>
+                
             </ul>
         </nav>
     </div>
 </header>
+
+<p-dialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" [(visible)]="display">
+    <app-sign-in *ngIf="isSignIn"></app-sign-in>
+    <app-sign-up *ngIf="!isSignIn"></app-sign-up>
+</p-dialog>

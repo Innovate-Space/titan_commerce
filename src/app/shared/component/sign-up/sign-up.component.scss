@@ -1,0 +1,13 @@
+.signup{
+    &__logo{
+        img{
+            width: 3.75em;
+        }
+        span{
+            margin-left: .6em;
+            font-size: 1.2rem;
+            font-weight: var(--fw-medium);
+            color: var(--clr-primary-dark);
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<section class="hero">
+    <div class="container my-grid">
+         <div class="hero__catalog">
+             <ul role="list">
+                <li *ngFor="let link of menuLinks"><a [routerLink]="link.link">{{link.name}}</a></li>
+             </ul>
+         </div>
+         <div class="hero__banner">
+             <div class="carousel">
+                <p-galleria [value]="data" [numVisible]="5" [circular]="true" [autoPlay]="true" [transitionInterval]="2000">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" alt="Banner" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <div class="grid grid-nogutter justify-content-center">
+                            <img [src]="item" />
+                        </div>
+                    </ng-template>
+                </p-galleria>
+             </div>
+         </div>
+    </div>
+ </section>

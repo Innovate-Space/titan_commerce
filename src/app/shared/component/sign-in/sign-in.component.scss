@@ -1,0 +1,45 @@
+@import '../../../../assets/sass/mixin';
+.login{
+    &__logo{
+        img{
+            width: 3.75em;
+        }
+        span{
+            margin-left: .6em;
+            font-size: 1.2rem;
+            font-weight: var(--fw-medium);
+            color: var(--clr-primary-dark);
+        }
+    }
+
+    .input__wrapper{
+        .ppt{
+            position: relative;
+
+            .toggle{
+                position: absolute;
+                right: 2em;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+
+        }
+        input{
+            @include Input;
+            width: 100%;
+        }
+
+        margin-bottom: 2em;
+    }
+    button{
+        @include Button;
+        width: 100%;
+        padding-block: .6em;
+
+        &:disabled{
+            background-color: var(--clr-primary-light);
+            cursor: not-allowed;
+        }
+    }
+}

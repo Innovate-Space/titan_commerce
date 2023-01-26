@@ -1,0 +1,29 @@
+<div class="login">
+    <a href="#" class="login__logo flex"><img src="https://fakestoreapi.com/icons/logo.png" alt="Logo"> <span>Fake Store</span></a>
+
+    <div class="wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+            <div class="input__wrapper">
+                <label for="email">Email</label><br/>
+                <input type="text" formControlName="email" id="email" placeholder="Email Address" >
+                <div>
+                    <small *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">Email address is required</small>
+                    <small *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['email']">Enter a valid email</small>
+                </div>
+            </div>
+
+            <div class="input__wrapper">
+                <label for="password">Password</label><br/>
+                <div class="ppt">
+                    <input [type]="showPassword ? 'text': 'password'" formControlName="password" id="password" placeholder="Enter your password" >
+                    <small (click)="togglePasswordVisibility()" class="toggle">Show</small>
+                </div> 
+                <div>
+                    <small *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is required</small>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid" >Log In</button>
+        </form>
+    </div>
+</div>
