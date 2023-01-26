@@ -1,11 +1,41 @@
 <header class="header">
-    <div class="container flex header__wrapper">
-        <a href="#" class="header__logo"><img src="https://fakestoreapi.com/icons/logo.png" alt="Logo"></a>
+    <div class="header__wrapper">
+        <div class="container menu flex">
+            <a href="#" class="menu__logo flex"><img src="https://fakestoreapi.com/icons/logo.png" alt="Logo"> <span>Fake Store</span></a>
+            <div class="menu__search hide-small">
+                <input type="text" placeholder="Search..." class="search">
+                <button class="search__btn"><i class='bx bx-search' ></i></button>
+            </div>
 
-        <nav class="header__nav">
-            <div class="header__icon">
+            <div class="menu__options hide-small flex">
+                
+                    <a href=":javascript" class="round-icon flex">
+                        <div class="badge">0</div>
+                        <i class='bx bx-cart-alt'></i>
+                    </a>
+               
+                
+                    <a href=":javascript" class="round-icon flex">
+                        <i class='bx bxs-user'></i>
+                    </a>
+               
+                <div class="cart">
+                   <small>Welcome</small>
+                  <div class="div">
+                    <a href="#">Sign In</a> | <a href="#">Sign Up</a>
+                  </div>
+                </div>
+            </div>
+
+            <div class="menu__icon">
                 <i class='bx bx-menu'></i>
             </div>
+
+        </div>
+
+        <hr class="hide-small">
+
+        <nav class="header__nav container">
             <ul class="header__ul flex" role="list">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Products</a></li>

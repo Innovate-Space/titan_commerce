@@ -1,12 +1,65 @@
 @import '../../../../assets/sass/mixin';
 
 .header{
-    padding-block: 1em;
+    padding-block: 1.5em;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+    .menu{
+        justify-content: space-between;
+
+        &__icon{
+            font-size: 1.8rem;
+    
+            @include tabletBreakPoint{
+                display: none;
+            }
+        }
+
+        &__logo{
+            img{
+                width: 3.75em;
+            }
+            span{
+                margin-left: .6em;
+                font-size: 1.2rem;
+                font-weight: var(--fw-medium);
+                color: var(--clr-primary-dark);
+            }
+        }
+
+        &__search{
+            .search{
+                @include Input;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .search__btn{
+                @include Button;
+                height: 40px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-block: 1px solid var(--clr-primary-dark);
+            }
+        }
+
+        &__options{
+            @include tabletBreakPoint{
+                display: flex;
+                gap: 1.2em;
+            }
+            
+        }
+    }
+
+    hr{
+        margin-block: 1.5em;
+    }
 
     &__ul{
         display: none;
         @include tabletBreakPoint{
+            justify-content: flex-start;
             display: flex;
             li {
                 a{
@@ -20,21 +73,11 @@
         }
     }
 
-    &__logo{
-        img{
-            width: 3.75em;
-        }
-    }
+    
 
     &__wrapper{
         justify-content: space-between;
     }
 
-    &__icon{
-        font-size: 1.8rem;
-
-        @include tabletBreakPoint{
-            display: none;
-        }
-    }
+    
 }

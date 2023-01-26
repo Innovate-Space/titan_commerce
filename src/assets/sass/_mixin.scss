@@ -3,3 +3,21 @@
         @content;
     }
 }
+
+@mixin Input{
+    border-radius: 3px;
+    border: 1px solid var(--clr-primary-dark);
+    height: 40px;
+    outline: none;
+    padding-inline: .6em;
+}
+
+@mixin Button{
+    border-radius: 3px;
+    border: none;
+    background-color: var(--clr-primary-dark);
+    outline: none;
+    padding-inline: .6em;
+    color: var(--clr-white);
+    cursor: pointer;
+}
