@@ -22,7 +22,13 @@
                 <div class="cart">
                    <small>Welcome</small>
                   <div class="div">
-                    <a (click)="toggle(true)">Sign In</a> | <a (click)="toggle(false)">Sign Up</a>
+                    <div *ngIf="!(isSignedIn$ | async )">
+                        <a (click)="toggle(true)">Sign In</a> | <a (click)="toggle(false)">Sign Up</a>
+                    </div>
+                    <div *ngIf="(isSignedIn$ | async )">
+                        <a *ngIf="(user$ | async ) != null">{{(user$ | async)?.username}}</a> | <a (click)="logout()">Log Out</a>
+                    </div>
+                    
                   </div>
                 </div>
             </div>

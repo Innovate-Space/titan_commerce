@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { GlobalActions, GlobFeature } from 'src/app/core/store';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,15 +11,19 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignInComponent {
   showPassword: boolean = false;
+  isLoading$ : Observable<boolean>
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['', Validators.required]
   });
-  constructor(private readonly fb: FormBuilder){}
+  constructor(private readonly fb: FormBuilder, private readonly store: Store){
+    this.isLoading$ = store.select(GlobFeature.selectIsLoginLoading);
+  }
 
   onSubmit(){
-    alert(JSON.stringify(this.loginForm.value))
+    const {username, password } = this.loginForm.value;
+    this.store.dispatch(GlobalActions.signIn({user: {username: username!, password: password!}}))
   }
 
   togglePasswordVisibility(){

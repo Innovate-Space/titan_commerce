@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { User } from '../../models';
+import { GlobFeature } from '../../store';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +10,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isSignedIn$ : Observable<boolean>;
+  user$ :  Observable<User | null>;
+  constructor(private readonly store : Store){
+    this.isSignedIn$ = this.store.select(GlobFeature.selectIsLoggedIn);
+    this.user$ = this.store.select(GlobFeature.selectUser);
+  }
   menuLinks = [
     { path: '/',name: 'Home' },
     { path: '/product-list',name: 'Products' },
@@ -20,6 +30,10 @@ export class HeaderComponent {
   toggle(isTrue: boolean){
     this.isSignIn = isTrue
     this.display = true;
+  }
+
+  logout(){
+    alert("I will logout")
   }
 
 }
