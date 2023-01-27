@@ -24,6 +24,13 @@
         transition: .4s;
     }
 
+    &__name{
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     &__price{
         color: var(--clr-secondary-text);
         font-size: 1.1rem;

@@ -1,5 +1,5 @@
 <div class="login">
-    <a href="#" class="login__logo flex"><img src="https://fakestoreapi.com/icons/logo.png" alt="Logo"> <span>Fake Store</span></a>
+    <a class="login__logo flex"><img src="https://fakestoreapi.com/icons/logo.png" alt="Logo"> <span>Fake Store</span></a>
 
     <div class="wrapper">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
@@ -16,7 +16,7 @@
                 <label for="password">Password</label><br/>
                 <div class="ppt">
                     <input [type]="showPassword ? 'text': 'password'" formControlName="password" id="password" placeholder="Enter your password" >
-                    <small (click)="togglePasswordVisibility()" class="toggle">Show</small>
+                    <small (click)="togglePasswordVisibility()" class="toggle">{{showPassword ? 'Hide': 'Show'}}</small>
                 </div> 
                 <div>
                     <small *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is required</small>

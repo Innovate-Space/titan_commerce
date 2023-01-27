@@ -15,7 +15,6 @@
     .input__wrapper{
         .ppt{
             position: relative;
-
             .toggle{
                 position: absolute;
                 right: 2em;
@@ -23,7 +22,9 @@
                 transform: translateY(-50%);
                 cursor: pointer;
             }
-
+        }
+        label{
+            display: block;
         }
         input{
             @include Input;
