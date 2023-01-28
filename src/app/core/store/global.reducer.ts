@@ -13,6 +13,7 @@ interface State {
     isLoggedIn: boolean;
     isLoginLoading: boolean;
     isSignUpLoading: boolean
+    isAuthModalOpen: boolean
 }
    
 const initialState: State = {
@@ -20,7 +21,8 @@ const initialState: State = {
     cart: [],
     isLoggedIn: false,
     isLoginLoading: false,
-    isSignUpLoading: false
+    isSignUpLoading: false,
+    isAuthModalOpen: false
 };
 
 
@@ -30,11 +32,12 @@ export const GlobFeature = createFeature({
     reducer: createReducer(
         initialState,
         on(GlobalActions.signIn, (state) => ({...state, isLoginLoading: true,})),
-        on(GlobalActions.signInSuccess, (state, props)=> ({...state, isLoginLoading: false, user: props.user, isLoggedIn: true})),
+        on(GlobalActions.signInSuccess, (state, props)=> ({...state, isLoginLoading: false, user: props.user, isLoggedIn: true, isAuthModalOpen: false})),
         on(GlobalActions.signInError, (state) => ({...state, isLoginLoading: false,})),
         on(GlobalActions.signUp, (state) => ({...state, isSignUpLoading: true})),
-        on(GlobalActions.signUpSuccess, (state, props)=> ({...state, isSignUpLoading: false, user: props.user})),
+        on(GlobalActions.signUpSuccess, (state, props)=> ({...state, isSignUpLoading: false, user: props.user, isAuthModalOpen: false})),
         on(GlobalActions.signUpError, (state) => ({...state, isSignUpLoading: false,})),
+        on(GlobalActions.toggleAuthModal, (state, {status}) => ({...state,isAuthModalOpen: status})),
     ),
   });
    

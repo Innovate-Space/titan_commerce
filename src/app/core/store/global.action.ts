@@ -16,6 +16,8 @@ export const GlobalActions = createActionGroup({
     'Sign Up Success': props<{user:User}>(),
 
     'Sign Up Error': props<{message: string}>(),
+
+    'Toggle Auth Modal': props<{status: boolean}>()
     
   }
 });

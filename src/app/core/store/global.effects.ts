@@ -21,7 +21,6 @@ export class AuthEffects {
             this.netWorkHelper.post<token,auth >('/auth/login', action.user).pipe(
                 map(tok => {
                     const data: any = extractToken(tok.token);
-                    alert(JSON.stringify(data))
                     const user: User = { id: data['sub'], username: data['user'], token: tok.token}
                     return GlobalActions.signInSuccess({user: user})
                 }),

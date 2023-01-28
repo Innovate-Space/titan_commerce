@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from '../../models';
-import { GlobFeature } from '../../store';
+import { GlobalActions, GlobFeature } from '../../store';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,11 @@ import { GlobFeature } from '../../store';
 })
 export class HeaderComponent {
   isSignedIn$ : Observable<boolean>;
-  user$ :  Observable<User | null>;
+  user$:  Observable<User | null>;
   constructor(private readonly store : Store){
     this.isSignedIn$ = this.store.select(GlobFeature.selectIsLoggedIn);
     this.user$ = this.store.select(GlobFeature.selectUser);
+    this.store.select(GlobFeature.selectIsAuthModalOpen).subscribe(d => this.display = d);
   }
   menuLinks = [
     { path: '/',name: 'Home' },
@@ -30,6 +31,7 @@ export class HeaderComponent {
   toggle(isTrue: boolean){
     this.isSignIn = isTrue
     this.display = true;
+    this.store.dispatch(GlobalActions.toggleAuthModal({status: true}));
   }
 
   logout(){
