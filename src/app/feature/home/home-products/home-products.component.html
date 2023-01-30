@@ -6,7 +6,11 @@
         </div>
 
         <div class="products__list">
-            <app-product *ngFor="let prod of products" [product]="prod"></app-product>
+            <app-product *ngFor="let prod of products$ | async" [product]="prod"></app-product>
+            <!-- <app-card-shimmer *ngFor="let prod of products"></app-card-shimmer> -->
+        </div>
+        <div class="products__list" *ngIf="isLoading$ | async">
+            <app-card-shimmer *ngFor="let prod of fakeProducts$ | async"></app-card-shimmer>
         </div>
     </div>
 </section>

@@ -1,3 +1,4 @@
+import { state } from "@angular/animations";
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { Cart, User } from "../models";
 import { GlobalActions } from "./global.action";
@@ -38,6 +39,8 @@ export const GlobFeature = createFeature({
         on(GlobalActions.signUpSuccess, (state, props)=> ({...state, isSignUpLoading: false, user: props.user, isAuthModalOpen: false})),
         on(GlobalActions.signUpError, (state) => ({...state, isSignUpLoading: false,})),
         on(GlobalActions.toggleAuthModal, (state, {status}) => ({...state,isAuthModalOpen: status})),
+        on(GlobalActions.logOut, (state) => ({...state, ...initialState}) ),
+        on(GlobalActions.rehydratedTheUser, (state, {user})=> ({...state, ...initialState, user: user, isLoggedIn: true }))
     ),
   });
    

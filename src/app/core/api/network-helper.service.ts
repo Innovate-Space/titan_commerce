@@ -14,4 +14,10 @@ export class NetworkHelperService {
     const url = this.BASE_URL + path
     return this.http.post<T>(url, body)
   }
+
+  get<T>(path: string): Observable<T>{
+    const url = this.BASE_URL + path
+    return this.http.get<T>(url)
+  }
+  
 }

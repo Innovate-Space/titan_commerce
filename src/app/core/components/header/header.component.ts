@@ -35,7 +35,7 @@ export class HeaderComponent {
   }
 
   logout(){
-    alert("I will logout")
+    this.store.dispatch(GlobalActions.logOut());
   }
 
 }

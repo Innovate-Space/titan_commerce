@@ -7,6 +7,9 @@ import { HomeComponent } from './home.component';
 import { BannerComponent } from './banner/banner.component';
 import { HomeProductsComponent } from './home-products/home-products.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { HomeEffects, HomeFeature } from './core/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    GalleriaModule
+    GalleriaModule,
+    StoreModule.forFeature(HomeFeature),
+    EffectsModule.forFeature([HomeEffects])
   ]
 })
 export class HomeModule { }

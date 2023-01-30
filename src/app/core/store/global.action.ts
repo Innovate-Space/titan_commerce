@@ -17,7 +17,13 @@ export const GlobalActions = createActionGroup({
 
     'Sign Up Error': props<{message: string}>(),
 
-    'Toggle Auth Modal': props<{status: boolean}>()
+    'Log Out': emptyProps(),
+
+    'Toggle Auth Modal': props<{status: boolean}>(),
+
+    'Rehydrated The User': props<{user:User}>(),
+
+    'Do nothing': emptyProps()
     
   }
 });
