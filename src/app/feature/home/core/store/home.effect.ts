@@ -1,8 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { Actions, ofType, createEffect, ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { Actions, ofType, createEffect} from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, } from 'rxjs/operators';
 import { NetworkHelperService } from 'src/app/core/api/network-helper.service';
 import { ProductModel, User } from 'src/app/core/models';
 import { HomeActions } from './home.actions';
