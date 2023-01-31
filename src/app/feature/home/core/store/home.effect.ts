@@ -14,7 +14,7 @@ export class HomeEffects {
 
     getProducts$ = createEffect(()=> this.actions$.pipe(
         ofType(HomeActions.getallproducts),
-        mergeMap(action => 
+        mergeMap(() => 
             this.netWorkHelper.get<ProductModel[]>('/products?limit=8').pipe(
                 map(products => HomeActions.getallproductssuccess({products: products})),
                 catchError(error => of(HomeActions.getproductsfailure(error.error['message'])))
