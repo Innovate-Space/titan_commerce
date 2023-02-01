@@ -1,4 +1,3 @@
-import { state } from "@angular/animations";
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { ProductModel } from "src/app/core/models";
 import { HomeActions } from "./home.actions";
