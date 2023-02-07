@@ -1,12 +1,14 @@
 
 import { Injectable } from '@angular/core';
-import { Actions, ofType, createEffect, ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { Actions, ofType, createEffect, ROOT_EFFECTS_INIT, OnInitEffects } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, delay, exhaustMap, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { NetworkHelperService } from '../api/network-helper.service';
-import { User } from '../models';
+import { Cart, ProductModel, User } from '../models';
 import { CacheService } from '../services/cache.service';
 import { GlobalActions } from './global.action';
+import { GlobFeature } from './global.reducer';
 
 type auth  = {username: string, password: string};
 type token = {token: string};
@@ -19,10 +21,24 @@ export class AuthEffects {
         map(() => {
             const user = this.cache.getUserData();
             return user ? GlobalActions.rehydratedTheUser({user: user}): GlobalActions.doNothing();
-        })
+        }),
     ))
 
-    constructor(private readonly actions$: Actions, private readonly netWorkHelper: NetworkHelperService, private readonly cache: CacheService) {}
+    rehydrateSuccess$ = createEffect(()=> this.actions$.pipe(
+        ofType(GlobalActions.rehydratedTheUser),
+        map(() => GlobalActions.getCart() )
+    ))
+
+    constructor(
+        private readonly actions$: Actions, 
+        private readonly netWorkHelper: NetworkHelperService, 
+        private readonly cache: CacheService,
+        private readonly store: Store
+    ) {}
+
+    // ngrxOnInitEffects(): Action {
+    //     return GlobalActions.getCart();
+    // }
 
     login$ = createEffect(()=> this.actions$.pipe(
         ofType(GlobalActions.signIn),
@@ -42,7 +58,33 @@ export class AuthEffects {
     logout$ =  createEffect(() => this.actions$.pipe(
         ofType(GlobalActions.logOut),
         tap(() => this.cache.clearUserData())
-    ), { dispatch: false })
+    ), { dispatch: false });
+
+    getCart$ = createEffect(() => this.actions$.pipe(
+        ofType(GlobalActions.getCart),
+        withLatestFrom(this.store.select(GlobFeature.selectUser)),
+        switchMap(([props, user]) => {
+            // console.log(props, user);
+            return this.netWorkHelper.get<Cart[]>(`/carts/user/${user?.id}`).pipe(
+                map(resp =>GlobalActions.getCartSuccess({cart: resp})),
+                catchError( error => {
+                    console.log(error);
+                    return of(GlobalActions.getCartSuccess({cart: []}));
+                })
+            )
+        })
+    ))
+
+    getActualProduct$ = createEffect(() => this.actions$.pipe(
+        ofType(GlobalActions.getProductInfo),
+        mergeMap((props) => this.netWorkHelper.get<ProductModel>(`/products/${props.id}`).pipe(
+            map((data) => GlobalActions.getProductInfoSuccess({product: data})),
+            catchError(error => {
+                console.log(error);
+                return of(GlobalActions.getProductInfoError({message: error.error['message'], id: props.id}));
+            })
+        ))
+    ))
 
 }
 

@@ -1,0 +1,12 @@
+<div class="cart container">
+    <div class="cart__list">
+        <div class="text-center" *ngIf="isLoading$ | async">
+            Loading.....
+        </div>
+        <div class="products__list">
+            <app-cart-item *ngFor="let item of cart?.products ?? []" [productId]="item.productId" [productQty]="item.quantity"></app-cart-item>
+            <!-- <app-product *ngFor="let item of cart?.products ?? []" ></app-product> -->
+            <!-- <app-card-shimmer *ngFor="let prod of products"></app-card-shimmer> -->
+        </div>
+    </div>
+</div>

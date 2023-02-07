@@ -4,5 +4,5 @@ export interface Cart {
     id: number;
     userId: number;
     date: string;
-    product: ProductModel[]
+    products: {productId: number, quantity: number}[]
 }

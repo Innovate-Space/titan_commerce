@@ -1,0 +1,17 @@
+
+ <div *ngIf="isLoading"  class="product">
+    <p>loading........</p>
+ </div>
+<a *ngIf="product" href="#">
+    <div  class="product">
+        <img [src]="product.image" alt="Product Image">
+        <div class="pd">
+            <p class="product__name">{{product.title}}</p>
+            <p class="product__name">{{product.description}}</p>
+            <p class="product__price">Price: {{product.price}} | Quantity Added: {{productQty}}</p>
+        </div>
+        <a href="#"  class="product__cart flex">
+            <i class='bx bx-cart-add' ></i>
+        </a>
+    </div>
+</a>

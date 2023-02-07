@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from '../../models';
@@ -9,13 +9,24 @@ import { GlobalActions, GlobFeature } from '../../store';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isSignedIn$ : Observable<boolean>;
   user$:  Observable<User | null>;
+  cartCount : number = 0;
   constructor(private readonly store : Store){
     this.isSignedIn$ = this.store.select(GlobFeature.selectIsLoggedIn);
     this.user$ = this.store.select(GlobFeature.selectUser);
     this.store.select(GlobFeature.selectIsAuthModalOpen).subscribe(d => this.display = d);
+  }
+  ngOnInit(): void {
+    this.store.select(GlobFeature.selectCart).subscribe(data => {
+      if(data.length <= 0 ) {
+        this.cartCount = 0;
+      }else{
+        this.cartCount = data[data.length-1].products.length;
+      }
+
+    })
   }
   menuLinks = [
     { path: '/',name: 'Home' },

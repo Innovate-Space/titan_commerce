@@ -6,6 +6,7 @@ import { SignInComponent } from './component/sign-in/sign-in.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardShimmerComponent } from './component/card-shimmer/card-shimmer.component';
+import { CartItemComponent } from './component/cart-item/cart-item.component';
 
 
 
@@ -14,7 +15,8 @@ import { CardShimmerComponent } from './component/card-shimmer/card-shimmer.comp
     ProductComponent,
     SignInComponent,
     SignUpComponent,
-    CardShimmerComponent
+    CardShimmerComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { CardShimmerComponent } from './component/card-shimmer/card-shimmer.comp
     SignInComponent,
     SignUpComponent,
     CardShimmerComponent,
+    CartItemComponent,
     ReactiveFormsModule,
     FormsModule
   ]
