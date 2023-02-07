@@ -7,6 +7,7 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardShimmerComponent } from './component/card-shimmer/card-shimmer.component';
 import { CartItemComponent } from './component/cart-item/cart-item.component';
+import { FormatMoneyPipe } from './pipe/format-money.pipe';
 
 
 
@@ -16,7 +17,8 @@ import { CartItemComponent } from './component/cart-item/cart-item.component';
     SignInComponent,
     SignUpComponent,
     CardShimmerComponent,
-    CartItemComponent
+    CartItemComponent,
+    FormatMoneyPipe
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { CartItemComponent } from './component/cart-item/cart-item.component';
     CardShimmerComponent,
     CartItemComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FormatMoneyPipe
   ]
 })
 export class SharedModule { }

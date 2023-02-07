@@ -3,7 +3,7 @@
         <img [src]="product.image" alt="Product Image">
 
         <p class="product__name">{{product.title}}</p>
-        <p class="product__price">{{product.price}}</p>
+        <p class="product__price">{{product.price | formatMoney}}</p>
 
         <a href="#"  class="product__cart flex">
             <i class='bx bx-cart-add' ></i>
