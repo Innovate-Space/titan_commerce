@@ -66,7 +66,7 @@ export class AuthEffects {
         switchMap(([props, user]) => {
             // console.log(props, user);
             return this.netWorkHelper.get<Cart[]>(`/carts/user/${user?.id}`).pipe(
-                map(resp =>GlobalActions.getCartSuccess({cart: resp})),
+                map((resp) => GlobalActions.getCartSuccess({cart: resp})),
                 catchError( error => {
                     console.log(error);
                     return of(GlobalActions.getCartSuccess({cart: []}));
@@ -89,3 +89,14 @@ export class AuthEffects {
 }
 
 const extractToken = (token: string) => JSON.parse(atob(token.split('.')[1]));
+// jguyj.ugiugiugiug.jvivyfvyifv
+
+"{'username':'ken', 'id': 20}";
+
+const ex = {user: 'ken', sub: 20};
+
+[
+    'jguyj',
+    'ugiugiugiug',
+    'jvivyfvyifv'
+]

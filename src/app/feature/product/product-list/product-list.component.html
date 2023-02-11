@@ -1,1 +1,18 @@
-<p>product-list works!</p>
+<section class="products">
+    <div class="container">
+        <div>
+            <div class="products__list">
+                <app-product *ngFor="let prod of products " [product]="prod"></app-product>
+                
+                <!-- <app-card-shimmer *ngFor="let prod of products"></app-card-shimmer> -->
+            </div>
+            <div *ngIf="products.length > 0" class="pag">
+                <p-paginator [rows]="4" (onPageChange)="paginate($event)" [totalRecords]="productCount"></p-paginator>
+            </div>
+        </div>
+        
+        <div class="products__list" *ngIf="isLoading$ | async">
+            <app-card-shimmer *ngFor="let prod of fakeProducts$ | async"></app-card-shimmer>
+        </div>
+    </div>
+</section> 

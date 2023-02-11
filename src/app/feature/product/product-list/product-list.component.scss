@@ -1,0 +1,33 @@
+@import '../../../../assets/sass/mixin';
+
+.products{
+    padding-block: 4em;
+    &__cta{
+        justify-content: space-between;
+
+        h3{
+            font-weight: var(--fw-normal);
+            color: var(--clr-secondary-text);
+            font-size: 1.3rem;
+        }
+
+        .btn{
+            @include Button;
+            background-color: transparent;
+            color: var(--clr-primary-dark);
+            border: 1px solid var(--clr-primary-dark);
+            padding: .4em 1em;
+        }
+    }
+
+    &__list{
+        gap: 2em;
+        display: grid;
+        margin-top: 2em;
+       grid-template-columns: repeat(auto-fit, minMax(15em, 1fr));
+    }
+
+    .pag{
+        margin-top: 2.5em;
+    }
+}
